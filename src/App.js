@@ -24,7 +24,11 @@ function App() {
       {/* register your input into the hook by invoking the "register" function */}
       <div className="form-header">
         <span>Solution</span>
-        <span>%</span>
+        <select {...register("proportion")}>
+          <option value="%">%</option>
+          <option value="mg">mg</option>
+          <option value="ml">ml</option>
+        </select>
       </div>
       <div className="container">
         <input placeholder="nitrogen" {...register("nitro")} />
