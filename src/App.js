@@ -8,7 +8,7 @@ function App() {
     register,
     handleSubmit,
     watch,
-    // formState: { errors },
+    formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
@@ -30,7 +30,18 @@ function App() {
         </select>
       </div>
       <div className="container">
-        <input placeholder="nitrogen" {...register("nitro")} />
+        <input
+          placeholder="Supplier"
+          {...register("supplier", { required: true })}
+        />
+        <input
+          placeholder="Name of solution"
+          {...register("solution", { required: true })}
+        />
+        <input
+          placeholder="nitrogen"
+          {...register("nitro", { minLength: 2 })}
+        />
         <input placeholder="phosphorus" {...register("phosphorus")} />
         <input placeholder="kalium" {...register("kalium")} />
         <input placeholder="calcium" {...register("calcium")} />
@@ -47,7 +58,8 @@ function App() {
         /> */}
 
         {/* errors will return when field validation fails  */}
-        {/* {errors.pass && <span>This field is required</span>} */}
+        {errors.supplier && <span>This field is required</span>}
+        {errors.solution && <span>This field is required</span>}
 
         <input type="submit" />
       </div>
