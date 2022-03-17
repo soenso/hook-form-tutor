@@ -5,14 +5,13 @@ import { useForm } from "react-hook-form";
 
 function App() {
   const {
-    list,
     register,
     handleSubmit,
     watch,
     // formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(list);
+    console.log(data);
   };
 
   console.log(watch("name")); // watch input value by passing the name of it
