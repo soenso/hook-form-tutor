@@ -1,6 +1,6 @@
 import "./App.css";
 
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 function App() {
@@ -12,7 +12,6 @@ function App() {
     // formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    list = data;
     console.log(list);
   };
 
@@ -25,7 +24,7 @@ function App() {
       {/* register your input into the hook by invoking the "register" function */}
       <div className="form-header">
         <span>Solution</span>
-        <span>N, %</span>
+        <span>%</span>
       </div>
       <div className="container">
         <input placeholder="nitrogen" {...register("nitro")} />
