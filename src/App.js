@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
 import React, { useState } from "react";
@@ -19,7 +20,7 @@ function App() {
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
 
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
       {/* register your input into the hook by invoking the "register" function */}
       <div className="form-header">
         <span>Solution</span>
@@ -61,7 +62,11 @@ function App() {
         {errors.supplier && <span>This field is required</span>}
         {errors.solution && <span>This field is required</span>}
 
-        <input type="submit" />
+        <input
+          type="submit"
+          value={"Add..."}
+          className="btn btn-outline-success"
+        />
       </div>
     </form>
   );
