@@ -34,11 +34,12 @@ const Form = ({ onSubmit }) => {
         />
         {errors.solution && <span>This field is required</span>}
         <input
-          pattern="^-?[0-9]\d*\.?\d*$"
+          type="number"
+          step="0.01"
+          min="0"
           placeholder="nitrogen"
           {...register('nitro', { minLength: 2 })}
         />
-        {errors.nitro && <span>2 digit minimum</span>}
         <input placeholder="phosphorus" {...register('phosphorus')} />
         <input placeholder="kalium" {...register('kalium')} />
         <input placeholder="calcium" {...register('calcium')} />
