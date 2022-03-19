@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import Form from "./Form";
-// import SolutionCard from "./SolutionCard";
+import SolutionCard from "./SolutionCard";
 
 const NutritionFormContainer = () => {
   
-  const[solutionCard, setSolutionCard] = useState({})
-  const addSolution =(props) =>{
-        setSolutionCard(props.formData)
+  const[solutionCard, setSolutionCard] = useState()
+  const handleFormSubmit =(data) =>{
+    console.log('!!!',data)
+        setSolutionCard(data)
   }
-  return (<>
-  <Form updateData={addSolution}/>
-  {/* <SolutionCard /> */}
-  {console.log(solutionCard)}
-  </>
+  return (<div>
+  <Form onSubmit={handleFormSubmit}/>
+  <SolutionCard solution={solutionCard}/>
+  </div>
   )
 };
 export default NutritionFormContainer

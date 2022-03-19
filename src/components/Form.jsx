@@ -1,18 +1,16 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const Form = (props) =>{
+const Form = ({onSubmit}) =>{
     const {
         register,
         handleSubmit,
-        watch,
+        // watch,
         formState: { errors },
       } = useForm();
-      const onSubmit = (data) => {
-          props.addSolution(data)
-      };
+
     
-      console.log(watch("name")); // watch input value by passing the name of it
+      // console.log(watch("name")); // watch input value by passing the name of it
     
       return (
         /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
@@ -28,18 +26,21 @@ const Form = (props) =>{
             </select>
           </div>
           <div className="container">
-            <input
+            <input type={"text"}
               placeholder="Supplier"
               {...register("supplier", { required: true })}
             />
-            <input
+            {errors.supplier && <span>This field is required</span>}
+            <input type={"text"}
               placeholder="Name of solution"
               {...register("solution", { required: true })}
             />
-            <input
+            {errors.solution && <span>This field is required</span>}
+            <input pattern="^-?[0-9]\d*\.?\d*$"
               placeholder="nitrogen"
               {...register("nitro", { minLength: 2 })}
             />
+            {errors.nitro && <span>2 digit minimum</span>}
             <input placeholder="phosphorus" {...register("phosphorus")} />
             <input placeholder="kalium" {...register("kalium")} />
             <input placeholder="calcium" {...register("calcium")} />
@@ -56,8 +57,7 @@ const Form = (props) =>{
             /> */}
     
             {/* errors will return when field validation fails  */}
-            {errors.supplier && <span>This field is required</span>}
-            {errors.solution && <span>This field is required</span>}
+            
     
             <input
               type="submit"
