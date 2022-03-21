@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import Form from './Form'
-import SolutionCard from './SolutionCard'
+import FertCard from './FertCard'
 
 const NutritionFormContainer = () => {
-  const [solutionCard, setSolutionCard] = useState()
+  const [fertCard, setFertCard] = useState()
   const handleFormSubmit = (data) => {
-    setSolutionCard(data)
+    setFertCard(data)
   }
   return (
     <div>
       <Form onSubmit={handleFormSubmit} />
-      <SolutionCard solution={solutionCard} />
+      <FertCard fert={fertCard} />
     </div>
   )
 }

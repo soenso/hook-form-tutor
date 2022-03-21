@@ -1,21 +1,16 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import './css/form.css'
 
 const Form = ({ onSubmit }) => {
   const {
     register,
     handleSubmit,
-    // watch,
     formState: { errors },
   } = useForm()
 
-  // console.log(watch("name")); // watch input value by passing the name of it
-
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
-      {/* register your input into the hook by invoking the "register" function */}
       <div className="form-header">
         <span>Solution</span>
         <select {...register('proportion')}>
@@ -24,39 +19,92 @@ const Form = ({ onSubmit }) => {
           <option value="ml">ml</option>
         </select>
       </div>
-      <div className="container">
-        <input type={'text'} placeholder="Supplier" {...register('supplier', { required: true })} />
-        {errors.supplier && <span>This field is required</span>}
-        <input
-          type={'text'}
-          placeholder="Name of solution"
-          {...register('solution', { required: true })}
-        />
-        {errors.solution && <span>This field is required</span>}
-        <input
-          type="number"
-          step="0.01"
-          min="0"
-          placeholder="nitrogen"
-          {...register('nitro', { minLength: 2 })}
-        />
-        <input placeholder="phosphorus" {...register('phosphorus')} />
-        <input placeholder="kalium" {...register('kalium')} />
-        <input placeholder="calcium" {...register('calcium')} />
-        <input placeholder="magnesium" {...register('magnesium')} />
-        <input placeholder="sulfur" {...register('sulfur')} />
-        <input placeholder="ferrum" {...register('ferrum')} />
-        <input placeholder="manganum" {...register('manganum')} />
-        <input placeholder="borum" {...register('borum')} />
 
-        {/* include validation with required or other standard HTML validation rules */}
-        {/* <input
-              placeholder="password"
-              {...register("pass", { required: true })}
-            /> */}
-
-        {/* errors will return when field validation fails  */}
-
+      <div className="inputForm">
+        <div className="line">
+          <span>Supplier</span>
+          <input
+            type={'text'}
+            placeholder="Supplier"
+            {...register('supplier', { required: true })}
+          />
+          {errors.supplier && <span>This field is required</span>}
+        </div>
+        <div className="line">
+          <span>Naming</span>
+          <input
+            type={'text'}
+            placeholder="Name of solution"
+            {...register('solution', { required: true })}
+          />
+          {errors.solution && <span>This field is required</span>}
+        </div>
+        <div className="line">
+          <span>N</span>
+          <input type="number" step="0.01" min="0" placeholder="nitrogen" {...register('nitro')} />
+        </div>
+        <div className="line">
+          <span>P</span>
+          <input
+            type="number"
+            step="0.01"
+            min="0"
+            placeholder="phosphorus"
+            {...register('phosphorus')}
+          />
+        </div>
+        <div className="line">
+          <span>p2o5</span>
+          <input type="number" step="0.01" min="0" placeholder="p2o5" {...register('p2o5')} />
+        </div>
+        <div className="line">
+          <span>K</span>
+          <input type="number" step="0.01" min="0" placeholder="kalium" {...register('kalium')} />
+        </div>
+        <div className="line">
+          <span>k2o</span>
+          <input type="number" step="0.01" min="0" placeholder="k2O" {...register('k2o')} />
+        </div>
+        <div className="line">
+          <span>Ca</span>
+          <input type="number" step="0.01" min="0" placeholder="calcium" {...register('calcium')} />
+        </div>
+        <div className="line">
+          <span>Mg</span>
+          <input
+            type="number"
+            step="0.01"
+            min="0"
+            placeholder="magnesium"
+            {...register('magnesium')}
+          />
+        </div>
+        <div className="line">
+          <span>MgO</span>
+          <input type="number" step="0.01" min="0" placeholder="mgO" {...register('mgO')} />
+        </div>
+        <div className="line">
+          <span>S</span>
+          <input type="number" step="0.01" min="0" placeholder="sulfur" {...register('sulfur')} />
+        </div>
+        <div className="line">
+          <span>Fe</span>
+          <input type="number" step="0.01" min="0" placeholder="ferrum" {...register('ferrum')} />
+        </div>
+        <div className="line">
+          <span>Mn</span>
+          <input
+            type="number"
+            step="0.01"
+            min="0"
+            placeholder="manganum"
+            {...register('manganum')}
+          />
+        </div>
+        <div className="line">
+          <span>B</span>
+          <input type="number" step="0.01" min="0" placeholder="borum" {...register('borum')} />
+        </div>
         <input type="submit" value={'Add...'} className="btn btn-outline-success" />
       </div>
     </form>
