@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const FertCard = ({ fert }) => {
   const calculateFert = () => {
     if (fert.proportion === '%') {
-      // solution.nitro = solution.nitro
     }
   }
   return (
