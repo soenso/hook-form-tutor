@@ -1,14 +1,21 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import './css/form.css'
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import './css/form.css';
 
 const Form = ({ onSubmit }) => {
+  const [phosphorValue, setPhosphorValue] = useState({ value: 'P' });
+  const [nameValid, setNameValid] = useState('Name of solution');
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
+  const handleChange = (event) => {
+    setPhosphorValue({ value: event.target.value });
+    console.log(event.target.value);
+  };
+  console.log(phosphorValue.value);
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-header">
@@ -19,7 +26,6 @@ const Form = ({ onSubmit }) => {
           <option value="ml">ml</option>
         </select>
       </div>
-
       <div className="inputForm">
         <div className="line">
           <span>Supplier</span>
@@ -32,31 +38,29 @@ const Form = ({ onSubmit }) => {
         </div>
         <div className="line">
           <span>Naming</span>
-          <input
-            type={'text'}
-            placeholder="Name of solution"
-            {...register('solution', { required: true })}
-          />
-          {errors.solution && <span>This field is required</span>}
+          <input type={'text'} placeholder={nameValid} {...register('name', { required: true })} />
+          {errors.solution && 'This field is required'}
+          {console.log(nameValid)}
         </div>
         <div className="line">
           <span>N</span>
           <input type="number" step="0.01" min="0" placeholder="nitrogen" {...register('nitro')} />
         </div>
         <div className="line">
-          <span>P</span>
+          <select value={phosphorValue.value} onChange={handleChange}>
+            <option value="P">P</option>
+            <option value="p2o5">p2o5</option>
+          </select>
+
           <input
             type="number"
             step="0.01"
             min="0"
-            placeholder="phosphorus"
-            {...register('phosphorus')}
+            placeholder={phosphorValue.value}
+            {...register(phosphorValue.value)}
           />
         </div>
-        <div className="line">
-          <span>p2o5</span>
-          <input type="number" step="0.01" min="0" placeholder="p2o5" {...register('p2o5')} />
-        </div>
+
         <div className="line">
           <span>K</span>
           <input type="number" step="0.01" min="0" placeholder="kalium" {...register('kalium')} />
@@ -108,6 +112,6 @@ const Form = ({ onSubmit }) => {
         <input type="submit" value={'Add...'} className="btn btn-outline-success" />
       </div>
     </form>
-  )
-}
-export default Form
+  );
+};
+export default Form;

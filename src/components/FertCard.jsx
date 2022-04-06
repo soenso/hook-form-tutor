@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 const FertCard = ({ fert }) => {
   const calculateFert = () => {
     if (fert.proportion === '%') {
+      fert.N = (1000 * fert.N) / 100
     }
   }
   return (
