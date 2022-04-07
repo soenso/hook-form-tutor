@@ -3,19 +3,17 @@ import { useForm } from 'react-hook-form';
 import './css/form.css';
 
 const Form = ({ onSubmit }) => {
-  const [phosphorValue, setPhosphorValue] = useState({ value: 'P' });
+  let ana = 0;
+  const [phosphorus, setPhosphorus] = useState('P');
   const [nameValid, setNameValid] = useState('Name of solution');
+  const [kalium, setKalium] = useState('K');
+  const [calcium, setCalcium] = useState('Ca');
+  const [magnesium, setMagnesium] = useState('Mg');
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const handleChange = (event) => {
-    setPhosphorValue({ value: event.target.value });
-    console.log(event.target.value);
-  };
-  console.log(phosphorValue.value);
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-header">
@@ -39,15 +37,18 @@ const Form = ({ onSubmit }) => {
         <div className="line">
           <span>Naming</span>
           <input type={'text'} placeholder={nameValid} {...register('name', { required: true })} />
-          {errors.solution && 'This field is required'}
-          {console.log(nameValid)}
+          {errors.name && <span>This field is required</span>}
         </div>
         <div className="line">
           <span>N</span>
           <input type="number" step="0.01" min="0" placeholder="nitrogen" {...register('nitro')} />
         </div>
         <div className="line">
-          <select value={phosphorValue.value} onChange={handleChange}>
+          <select
+            value={phosphorus}
+            onChange={(event) => {
+              setPhosphorus(event.target.value);
+            }}>
             <option value="P">P</option>
             <option value="p2o5">p2o5</option>
           </select>
@@ -56,37 +57,52 @@ const Form = ({ onSubmit }) => {
             type="number"
             step="0.01"
             min="0"
-            placeholder={phosphorValue.value}
-            {...register(phosphorValue.value)}
+            placeholder={phosphorus}
+            {...register(phosphorus)}
           />
         </div>
 
         <div className="line">
-          <span>K</span>
-          <input type="number" step="0.01" min="0" placeholder="kalium" {...register('kalium')} />
+          <select
+            value={kalium}
+            onChange={(event) => {
+              setKalium(event.target.value);
+            }}>
+            <option value="K">K</option>
+            <option value="K2o">K2o</option>
+          </select>
+          <input type="number" step="0.01" min="0" placeholder={kalium} {...register(kalium)} />
+        </div>
+
+        <div className="line">
+          <select
+            value={calcium}
+            onChange={(event) => {
+              setCalcium(event.target.value);
+            }}>
+            <option value="Ca">Ca</option>
+            <option value="CaO">CaO</option>
+          </select>
+          <input type="number" step="0.01" min="0" placeholder={calcium} {...register(calcium)} />
         </div>
         <div className="line">
-          <span>k2o</span>
-          <input type="number" step="0.01" min="0" placeholder="k2O" {...register('k2o')} />
-        </div>
-        <div className="line">
-          <span>Ca</span>
-          <input type="number" step="0.01" min="0" placeholder="calcium" {...register('calcium')} />
-        </div>
-        <div className="line">
-          <span>Mg</span>
+          <select
+            value={magnesium}
+            onChange={(event) => {
+              setMagnesium(event.target.value);
+            }}>
+            <option value="Mg">Mg</option>
+            <option value="MgO">MgO</option>
+          </select>
           <input
             type="number"
             step="0.01"
             min="0"
-            placeholder="magnesium"
-            {...register('magnesium')}
+            placeholder={magnesium}
+            {...register(magnesium)}
           />
         </div>
-        <div className="line">
-          <span>MgO</span>
-          <input type="number" step="0.01" min="0" placeholder="mgO" {...register('mgO')} />
-        </div>
+
         <div className="line">
           <span>S</span>
           <input type="number" step="0.01" min="0" placeholder="sulfur" {...register('sulfur')} />
