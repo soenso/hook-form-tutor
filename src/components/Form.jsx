@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import './css/form.css';
 
 const Form = ({ onSubmit }) => {
-  let ana = 0;
   const [phosphorus, setPhosphorus] = useState('P');
   const [nameValid, setNameValid] = useState('Name of solution');
   const [kalium, setKalium] = useState('K');
